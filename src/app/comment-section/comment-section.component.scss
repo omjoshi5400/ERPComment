@@ -1,0 +1,110 @@
+.main {
+      height: 100%;
+      background: #303641;
+
+      hr {
+            margin: 10px 10px;
+      }
+
+      .comments {
+            min-height: calc(100vh - 145px);
+            margin: 15px 10px;
+            overflow: auto;
+            max-height: calc(100vh - 145px);
+            margin: 15px 10px;
+            display: flex;
+            flex-direction: column-reverse;
+            .comment-tile {
+                  margin: 5px 0px;
+                  padding: 5px;
+                  display: flex;
+                  position: relative;
+                  flex-direction: column;
+                  width: 99%;
+                  height: 100%;
+                  border-radius: 0.5rem;
+                  border: 2.5px solid transparent;
+                  background-color: #aaabae;
+                  box-shadow: 0 5px 10px #00000022;
+                  transition: 0.25s ease;
+                  cursor: pointer;
+                  justify-content: space-around;
+
+                  .comment-title {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .comment-title-right {
+                              display: flex;
+                              flex-direction: row;
+                              
+                              .btn-icon-menu{
+                                    padding-left: 7px;
+                                    ::ng-deep {
+                                          .mat-icon-button {
+                                                width: 15px;
+                                                height: 15px;
+      
+                                                .mat-icon {
+                                                      vertical-align: top;
+                                                      padding-right: 9px;
+                                                      font-size: 14px;
+                                                      line-height: 15px;
+                                                }
+                                          }
+      
+                                    }
+                              }
+                        }
+                  }
+
+                  .comment-area{
+                        .comment-text {
+                              font-weight: 400;
+                              font-size: 16px;
+                              margin-top: 10px;
+                        }
+
+                        .edit-comment{
+                              ::ng-deep{
+                                    .form-group{
+                                          flex-grow: 1;
+                                    }
+                                    .form-control{
+                                          height: 100%;
+                                    }
+                                    .mat-raised-button{
+                                          line-height: 25px;
+                                          min-width: auto;
+                                          margin-right: 5px;
+                                    }
+                              }
+                        }
+                  }
+
+            }
+      }
+
+      .footer {
+            align-items: center;
+
+            .submit-comment {
+                  .btn-submit-comments {
+                        border-radius: 60%;
+
+                        .send-icon {
+                              margin-left: -5px;
+                        }
+                  }
+            }
+      }
+}
+
+.text-white {
+      color: white;
+}
+
+.fs-18 {
+      font-size: 18px;
+}

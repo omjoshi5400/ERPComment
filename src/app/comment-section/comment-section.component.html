@@ -1,0 +1,97 @@
+<div class="main">
+      <div class="header text-white">
+            <div class="title text-white fs-18">Welcome to Comments</div>
+            <div class="close-icon">
+                  <i class="fa fa-close"></i>
+            </div>
+      </div>
+
+      <hr class="text-white">
+      <div class="comments" #scrollComment (scroll)="onScrollLoadData()">
+            <div *ngFor="let comment of comments" class="comment-tile" (mouseenter)="enterComment(comment.id)">
+                  <div class="comment-title">
+                        <div class="comment-username">
+                              {{comment.name}}
+                        </div>
+                        <div class="comment-title-right">
+                              <div class="comment-date-time">{{comment.date}}</div>
+                              <div class="btn-icon-menu">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+                                          *ngIf="showMenuIcon == comment.id">
+                                          <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                          <button mat-menu-item (click)="editComment(comment.id)">Edit Message</button>
+                                          <button mat-menu-item
+                                                (click)="openDeleteModel(comment.message, comment.id)">Delete
+                                                Message</button>
+                                    </mat-menu>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="comment-area">
+                        <p *ngIf="!editMode || showMenuIcon !== comment.id" class="comment-text">{{comment.message}}</p>
+                        <div class="edit-comment" *ngIf="this.editMode && showMenuIcon == comment.id">
+                              <div class="form-group">
+                                    <input type="text" class="form-control" value="{{comment.message}}"
+                                          (keyup)="onKey($event)">
+
+                              </div>
+                              <div style="float: right;">
+                                    <button mat-raised-button class=" btn btn-success" type="submit"
+                                          (click)="updateComment(comment.id)">Save</button>
+                                    <button mat-raised-button class="btn btn-danger"
+                                          (click)="cancelEditComment()">Cancel</button>
+
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <div class="footer">
+            <div class="textbar text-white">
+                  <div class="form-group">
+                        <input type="text" class="form-control" id="txtbComments" name="txtbComments"
+                              placeholder="Type your message here" [(ngModel)]="inputComments">
+                  </div>
+            </div>
+            <div class="submit-comment text-white">
+                  <button type="button" class="btn-submit-comments btn btn-success px-3" (click)="addComments()">
+                        <i class="fa fa-send send-icon"></i>
+                  </button>
+            </div>
+      </div>
+
+</div>
+<!-- Delete Confirm Modal - START -->
+<div class="modal fade" id="ConfirmDelete">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Delete Comment</h4>
+                  </div>
+                  <div class="modal-body">
+                        <div class="row">
+                              <div class="col-md-12">
+                                    <div class="col-md-12">
+                                          <div class="alert alert-warning">Are you sure you want to delete
+                                                <b>"{{deleteCommentString}}"</b> comment? </div>
+                                    </div>
+                                    <div class="form-group">
+                                          <label class="col-sm-6 control-label"></label>
+                                          <div class="col-sm-6 text-right">
+                                                <button type="button" id="btnCancelModel"
+                                                      class="btn btn-red btn-sm btn-icon icon-left" autofocus="true"
+                                                      data-dismiss="modal"><i class="entypo-cancel"></i>Cancel</button>
+                                                <button type="button" class="btn btn-blue btn-sm btn-icon icon-left"
+                                                      id="btnDeleteConfirmModel" (click)="deleteComment()"><i
+                                                            class="entypo-check"></i>Confirm</button>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- Delete Confirm Modal - END -->
